@@ -8,6 +8,7 @@ public class Person {
     private int stratum;
     private char isPension;
     private char sex;
+    private String country;
 
     public char getSex() {
         return sex;
