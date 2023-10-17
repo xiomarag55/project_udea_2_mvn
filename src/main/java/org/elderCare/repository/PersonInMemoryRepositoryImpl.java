@@ -7,7 +7,6 @@ import java.util.List;
 public class PersonInMemoryRepositoryImpl implements PersonRepository {
     @Override
     public List<Person> findAllPersons() {
-
         List<Person> persons = List.of(
                 new Person("Luis Carlos Arango", 50, "112372567", "Soltero", 1, 'S', 'M'),
                 new Person("Maria Lopez Ruiz", 60, "13237256", "Casada", 2, 'N', 'F'),

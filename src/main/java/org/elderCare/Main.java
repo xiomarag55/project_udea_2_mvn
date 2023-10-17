@@ -1,21 +1,19 @@
 package org.elderCare;
 
-// Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
-// then press Enter. You can now see whitespace characters in your code.
+import org.elderCare.repository.PersonInMemoryRepositoryImpl;
+import org.elderCare.repository.PersonRepository;
+import org.elderCare.service.PersonService;
+import org.elderCare.service.PersonServiceImpl;
+
+import java.util.logging.Logger;
 public class Main {
     public static void main(String[] args) {
-        // Press Alt+Intro with your caret at the highlighted text to see how
-        // IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
 
-        System.out.printf("The branch dev/mateo is created");
+        Logger logger;
+        PersonService personService = new PersonServiceImpl(new PersonInMemoryRepositoryImpl());
+        PersonRepository personRepository = new PersonInMemoryRepositoryImpl();
 
-        // Press Mayús+F10 or click the green arrow button in the gutter to run the code.
-        for (int i = 1; i <= 5; i++) {
+        personService.peopleSituationVulnerability(personRepository.findAllPersons());
 
-            // Press Mayús+F9 to start debugging your code. We have set one breakpoint
-            // for you, but you can always add more by pressing Ctrl+F8.
-            System.out.println("i = " + i);
-        }
     }
 }
