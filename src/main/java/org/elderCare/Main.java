@@ -11,6 +11,7 @@ public class Main {
         PersonRepository personRepository = new PersonInMemoryRepositoryImpl();
 
         personService.peopleSituationVulnerability(personRepository.findAllPersons());
+        System.out.println("Number of women pensioners women: " + personService.numberWomenPensioners(personRepository.findAllPersons()));
 
     }
 }

@@ -58,7 +58,13 @@ public class PersonServiceImpl implements PersonService {
 
     @Override
     public int numberWomenPensioners(List<Person> persons) {
-        return 0;
+        int sumWomenPensioned = 0;
+        for(Person person: persons){
+            if(person.isPension() == 'S' && person.sex() == 'F'){
+                sumWomenPensioned++;
+            }
+        }
+        return sumWomenPensioned;
     }
 
     @Override
