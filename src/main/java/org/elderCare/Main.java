@@ -10,7 +10,7 @@ public class Main {
         PersonService personService = new PersonServiceImpl(new PersonInMemoryRepositoryImpl());
         PersonRepository personRepository = new PersonInMemoryRepositoryImpl();
 
-        personService.peopleSituationVulnerability(personRepository.findAllPersons());
+        personService.totalSituationVulnerability(personRepository.findAllPersons());
         System.out.println("Total number of people in vulnerability: " + personService.totalSituationVulnerability(personRepository.findAllPersons()));
 
         personService.numberPensioners(personRepository.findAllPersons());
