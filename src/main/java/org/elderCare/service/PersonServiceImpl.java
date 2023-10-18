@@ -21,8 +21,8 @@ public class PersonServiceImpl implements PersonService {
         Map<String, Integer> vulnerablePerson = new HashMap<>();
         int totalSituationVulnerability = 0;
         for (Person person : persons) {
-            if (person.getIsPension() == 'N' && person.getStratum() < 2) {
-                vulnerablePerson.put(person.getIdentityDocument(), person.getStratum());
+            if (person.isPension() == 'N' && person.stratum() < 2) {
+                vulnerablePerson.put(person.identityDocument(), person.stratum());
                 totalSituationVulnerability++;
             }
         }
