@@ -13,19 +13,16 @@ public class Main {
         personService.peopleSituationVulnerability(personRepository.findAllPersons());
         System.out.println("Total number of people in vulnerability: " + personService.totalSituationVulnerability(personRepository.findAllPersons()));
 
-        personService.numberPensioners(personRepository.findAllPersons());
         System.out.println("Total of people pensioners: " + personService.numberPensioners(personRepository.findAllPersons()));
 
-        personService.numberNonePensioners(personRepository.findAllPersons());
         System.out.println("Total of people none pensioners: " + personService.numberNonePensioners(personRepository.findAllPersons()));
 
-        personService.numberPensionersOveSixty(personRepository.findAllPersons());
         System.out.println("The number of retired people over 60 years of age is: " + personService.numberPensionersOveSixty(personRepository.findAllPersons()));
 
-        personService.numberWomenPensioners(personRepository.findAllPersons());
         System.out.println("Number of women pensioners : " + personService.numberWomenPensioners(personRepository.findAllPersons()));
 
-        personService.numberWomenNonPensioners(personRepository.findAllPersons());
         System.out.println("Number of women Non pensioners : " + personService.numberWomenNonPensioners(personRepository.findAllPersons()));
+        System.out.println("Percent of pensioners : " + personService.percentPensioners(personRepository.findAllPersons()));
+        System.out.println("Percent of non pensioners : " + personService.percentNonPensioners(personRepository.findAllPersons()));
     }
 }
