@@ -1,22 +1,31 @@
 package org.elderCare;
 
-// Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
-// then press Enter. You can now see whitespace characters in your code.
+import org.elderCare.repository.PersonInMemoryRepositoryImpl;
+import org.elderCare.repository.PersonRepository;
+import org.elderCare.service.PersonService;
+import org.elderCare.service.PersonServiceImpl;
 public class Main {
     public static void main(String[] args) {
-        // Press Alt+Intro with your caret at the highlighted text to see how
-        // IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
 
-        System.out.printf("The branch dev/mateo is created");
-        System.out.printf("Cualquier cosa");
+        PersonService personService = new PersonServiceImpl(new PersonInMemoryRepositoryImpl());
+        PersonRepository personRepository = new PersonInMemoryRepositoryImpl();
 
-        // Press Mayús+F10 or click the green arrow button in the gutter to run the code.
-        for (int i = 1; i <= 5; i++) {
+        personService.peopleSituationVulnerability(personRepository.findAllPersons());
+        System.out.println("Total number of people in vulnerability: " + personService.totalSituationVulnerability(personRepository.findAllPersons()));
 
-            // Press Mayús+F9 to start debugging your code. We have set one breakpoint
-            // for you, but you can always add more by pressing Ctrl+F8.
-            System.out.println("i = " + i);
-        }
+        personService.numberPensioners(personRepository.findAllPersons());
+        System.out.println("Total of people pensioners: " + personService.numberPensioners(personRepository.findAllPersons()));
+
+        personService.numberNonePensioners(personRepository.findAllPersons());
+        System.out.println("Total of people none pensioners: " + personService.numberNonePensioners(personRepository.findAllPersons()));
+
+        personService.numberPensionersOveSixty(personRepository.findAllPersons());
+        System.out.println("The number of retired people over 60 years of age is: " + personService.numberPensionersOveSixty(personRepository.findAllPersons()));
+
+        personService.numberWomenPensioners(personRepository.findAllPersons());
+        System.out.println("Number of women pensioners : " + personService.numberWomenPensioners(personRepository.findAllPersons()));
+
+        personService.numberWomenNonPensioners(personRepository.findAllPersons());
+        System.out.println("Number of women Non pensioners : " + personService.numberWomenNonPensioners(personRepository.findAllPersons()));
     }
 }
