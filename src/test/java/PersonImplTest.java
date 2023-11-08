@@ -1,5 +1,4 @@
-import org.elderCare.repository.PersonInMemoryRepositoryImpl;
-import org.elderCare.repository.PersonRepository;
+import org.elderCare.repository.PersonUsingFileRepositoryImpl;
 import org.elderCare.service.PersonService;
 import org.elderCare.service.PersonServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
@@ -14,7 +13,7 @@ public class PersonImplTest {
 
     @BeforeEach
     void setUp(){
-        this.personService = new PersonServiceImpl(new PersonInMemoryRepositoryImpl());
+        this.personService = new PersonServiceImpl(new PersonUsingFileRepositoryImpl());
     }
     @Test
     void calculate_number_pensioners(){

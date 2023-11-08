@@ -1,12 +1,10 @@
 package org.elderCare.service;
 
 import org.elderCare.model.Person;
-import org.elderCare.repository.PersonInMemoryRepositoryImpl;
 import org.elderCare.repository.PersonRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,8 +12,9 @@ import java.util.Map;
 public class PersonServiceImpl implements PersonService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(PersonServiceImpl.class);
-    PersonRepository personRepository = new PersonInMemoryRepositoryImpl();
-    public PersonServiceImpl(PersonInMemoryRepositoryImpl personInMemoryRepository){
+    private final PersonRepository personRepository ;
+    public PersonServiceImpl(PersonRepository personRepository){
+        this.personRepository = personRepository;
 
     }
     //Number of people who are in stratum 1 by id Number
@@ -59,6 +58,11 @@ public class PersonServiceImpl implements PersonService {
     public double percentNonPensioners() {
         LOGGER.info("You are calculating the percent of non-pensioners");
         return ((double)numberNonePensioners() / (double)personRepository.findAllPersons().size())*100;
+    }
+
+    @Override
+    public void allPersonsToRevision() {
+        personRepository.findAllPersons().forEach(System.out::println);
     }
 
     @Override

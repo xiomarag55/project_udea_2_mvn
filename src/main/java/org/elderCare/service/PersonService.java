@@ -8,6 +8,7 @@ public interface PersonService {
 
     //Method for printing people in vulnerable situation
     void peopleSituationVulnerability();
+    void allPersonsToRevision();
     int totalSituationVulnerability();
     int numberPensioners();
     int numberNonePensioners();
@@ -16,4 +17,5 @@ public interface PersonService {
     int numberWomenNonPensioners();
     double percentPensioners();
     double percentNonPensioners();
+
 }

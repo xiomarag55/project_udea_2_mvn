@@ -1,14 +1,16 @@
 package org.elderCare;
 
-import org.elderCare.repository.PersonInMemoryRepositoryImpl;
-import org.elderCare.repository.PersonRepository;
+import org.elderCare.repository.PersonUsingFileRepositoryImpl;
 import org.elderCare.service.PersonService;
 import org.elderCare.service.PersonServiceImpl;
 public class Main {
     public static void main(String[] args) {
 
-        PersonService personService = new PersonServiceImpl(new PersonInMemoryRepositoryImpl());
+        PersonService personService = new PersonServiceImpl(new PersonUsingFileRepositoryImpl());
 
+        System.out.println("--------------------------- Persons for revision------------------------------");
+        personService.allPersonsToRevision();
+        System.out.println("----------------------------End-----------------------------------------------");
         personService.totalSituationVulnerability();
         System.out.println("Total number of people in vulnerability: " + personService.totalSituationVulnerability());
         System.out.println("Total of people pensioners: " + personService.numberPensioners());
