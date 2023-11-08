@@ -11,7 +11,6 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 public class PersonImplTest {
 
     private PersonService personService;
-    private PersonRepository personRepository = new PersonInMemoryRepositoryImpl();
 
     @BeforeEach
     void setUp(){
@@ -19,19 +18,19 @@ public class PersonImplTest {
     }
     @Test
     void calculate_number_pensioners(){
-        int average = this.personService.numberPensioners(personRepository.findAllPersons());
+        int average = this.personService.numberPensioners();
         assertNotNull(average);
         assertEquals(9, average);
     }
     @Test
     void calculate_percent_number_pensioners(){
-        double average = this.personService.percentPensioners(personRepository.findAllPersons());
+        double average = this.personService.percentPensioners();
         assertNotNull(average);
         assertEquals(36.0, average);
     }
     @Test
     void calculate_percent_number_non_pensioners(){
-        double average = this.personService.percentNonPensioners(personRepository.findAllPersons());
+        double average = this.personService.percentNonPensioners();
         assertNotNull(average);
         assertEquals(64.0, average);
     }

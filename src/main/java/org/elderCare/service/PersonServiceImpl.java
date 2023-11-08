@@ -2,6 +2,7 @@ package org.elderCare.service;
 
 import org.elderCare.model.Person;
 import org.elderCare.repository.PersonInMemoryRepositoryImpl;
+import org.elderCare.repository.PersonRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -13,16 +14,17 @@ import java.util.Map;
 public class PersonServiceImpl implements PersonService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(PersonServiceImpl.class);
+    PersonRepository personRepository = new PersonInMemoryRepositoryImpl();
     public PersonServiceImpl(PersonInMemoryRepositoryImpl personInMemoryRepository){
 
     }
     //Number of people who are in stratum 1 by id Number
     @Override
-    public void peopleSituationVulnerability(List<Person> persons) {
+    public void peopleSituationVulnerability() {
         LOGGER.info("You are printing people in situation of vulnerability");
         Map<String, Integer> vulnerablePerson = new HashMap<>();
         int totalSituationVulnerability = 0;
-        for (Person person : persons) {
+        for (Person person : personRepository.findAllPersons()) {
             if (person.isPension() == 'N' && person.stratum() < 2) {
                 vulnerablePerson.put(person.identityDocument(), person.stratum());
                 totalSituationVulnerability++;
@@ -34,11 +36,11 @@ public class PersonServiceImpl implements PersonService {
     }
 
     @Override
-    public int totalSituationVulnerability(List<Person> persons) {
+    public int totalSituationVulnerability() {
         LOGGER.info("You are calculating the total people in vulnerability situation");
         Map<String, Integer> vulnerablePersons = new HashMap<>();
         int sumSituationVulnerability = 0;
-        for(Person person: persons){
+        for(Person person: personRepository.findAllPersons()){
             if(person.isPension() == 'N' && person.stratum() < 2){
                 vulnerablePersons.put(person.identityDocument(), person.stratum());
                 sumSituationVulnerability++;
@@ -48,15 +50,15 @@ public class PersonServiceImpl implements PersonService {
     }
 
     @Override
-    public double percentPensioners(List<Person> persons) {
+    public double percentPensioners() {
         LOGGER.info("You are calculating the percent of pensioners");
-        return ((double)numberPensioners(persons) / (double)persons.size())*100;
+        return ((double)numberPensioners(personRepository.findAllPersons()) / (double)personRepository.findAllPersons().size())*100;
     }
 
     @Override
-    public double percentNonPensioners(List<Person> persons) {
+    public double percentNonPensioners() {
         LOGGER.info("You are calculating the percent of non-pensioners");
-        return ((double)numberNonePensioners(persons) / (double)persons.size())*100;
+        return ((double)numberNonePensioners(personRepository.findAllPersons()) / (double)personRepository.findAllPersons().size())*100;
     }
 
     @Override
@@ -84,10 +86,10 @@ public class PersonServiceImpl implements PersonService {
     }
 
     @Override
-    public int numberPensionersOveSixty(List<Person> persons) {
+    public int numberPensionersOveSixty() {
         LOGGER.info("Method to calculate number of pensioners over sixty");
         int sumPensionedOveSixty = 0;
-        for(Person person: persons){
+        for(Person person: personRepository.findAllPersons()){
             if(person.isPension() == 'S' && person.age() > 60){
                 sumPensionedOveSixty++;
             }
@@ -96,10 +98,10 @@ public class PersonServiceImpl implements PersonService {
     }
 
     @Override
-    public int numberWomenPensioners(List<Person> persons) {
+    public int numberWomenPensioners() {
         LOGGER.info("Method to calculate number of pensioner women");
         int sumWomenPensioned = 0;
-        for(Person person: persons){
+        for(Person person: personRepository.findAllPersons()){
             if(person.isPension() == 'S' && person.sex() == 'F'){
                 sumWomenPensioned++;
             }
@@ -108,10 +110,10 @@ public class PersonServiceImpl implements PersonService {
     }
 
     @Override
-    public int numberWomenNonPensioners(List<Person> persons) {
+    public int numberWomenNonPensioners() {
         LOGGER.info("Method to calculate women no-pensioners");
         int sumWomenNonPensioned = 0;
-        for(Person person: persons){
+        for(Person person: personRepository.findAllPersons()){
             if(person.isPension() == 'N' && person.sex() == 'F'){
                 sumWomenNonPensioned++;
             }
