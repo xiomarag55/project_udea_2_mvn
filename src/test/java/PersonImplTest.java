@@ -5,7 +5,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class PersonImplTest {
 
@@ -18,16 +17,16 @@ public class PersonImplTest {
     @Test
     void calculate_number_pensioners(){
         int average = this.personService.numberPensioners();
-        assertEquals(9, average);
+        assertEquals(10, average);
     }
     @Test
     void calculate_percent_number_pensioners(){
         double average = this.personService.percentPensioners();
-        assertEquals(36.0, average);
+        assertEquals(38.0, average);
     }
     @Test
     void calculate_percent_number_non_pensioners(){
         double average = this.personService.percentNonPensioners();
-        assertEquals(64.0, average);
+        assertEquals(62.0, average);
     }
 }

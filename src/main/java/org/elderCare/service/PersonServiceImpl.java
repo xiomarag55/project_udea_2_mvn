@@ -51,13 +51,13 @@ public class PersonServiceImpl implements PersonService {
     @Override
     public double percentPensioners() {
         LOGGER.info("You are calculating the percent of pensioners");
-        return ((double)numberPensioners() / (double)personRepository.findAllPersons().size())*100;
+        return Math.round(((double)numberPensioners() / (double)personRepository.findAllPersons().size())*100);
     }
 
     @Override
     public double percentNonPensioners() {
         LOGGER.info("You are calculating the percent of non-pensioners");
-        return ((double)numberNonePensioners() / (double)personRepository.findAllPersons().size())*100;
+        return Math.round(((double)numberNonePensioners() / (double)personRepository.findAllPersons().size())*100);
     }
 
     @Override
