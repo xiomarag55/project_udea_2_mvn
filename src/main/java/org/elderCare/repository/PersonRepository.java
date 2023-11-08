@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface PersonRepository {
     List<Person> findAllPersons();
+    void addPerson(Person person);
+    void removePerson(String personId);
 }
