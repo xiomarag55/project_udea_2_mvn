@@ -52,20 +52,20 @@ public class PersonServiceImpl implements PersonService {
     @Override
     public double percentPensioners() {
         LOGGER.info("You are calculating the percent of pensioners");
-        return ((double)numberPensioners(personRepository.findAllPersons()) / (double)personRepository.findAllPersons().size())*100;
+        return ((double)numberPensioners() / (double)personRepository.findAllPersons().size())*100;
     }
 
     @Override
     public double percentNonPensioners() {
         LOGGER.info("You are calculating the percent of non-pensioners");
-        return ((double)numberNonePensioners(personRepository.findAllPersons()) / (double)personRepository.findAllPersons().size())*100;
+        return ((double)numberNonePensioners() / (double)personRepository.findAllPersons().size())*100;
     }
 
     @Override
-    public int numberPensioners(List<Person> persons) {
+    public int numberPensioners() {
         LOGGER.info("Method to calculate number of pensioners");
         int sumPensioned = 0;
-        for(Person person: persons) {
+        for(Person person: personRepository.findAllPersons()) {
             if (person.isPension() == 'S') {
                 sumPensioned++;
             }
@@ -74,10 +74,10 @@ public class PersonServiceImpl implements PersonService {
     }
 
     @Override
-    public int numberNonePensioners(List<Person> persons) {
+    public int numberNonePensioners() {
         LOGGER.info("Method to calculate number of non-pernsioners");
         int sumNonePensioned = 0;
-        for(Person person: persons) {
+        for(Person person: personRepository.findAllPersons()) {
             if (person.isPension() == 'N') {
                 sumNonePensioned++;
             }

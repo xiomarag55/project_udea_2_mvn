@@ -8,12 +8,11 @@ public class Main {
     public static void main(String[] args) {
 
         PersonService personService = new PersonServiceImpl(new PersonInMemoryRepositoryImpl());
-        PersonRepository personRepository = new PersonInMemoryRepositoryImpl();
 
         personService.totalSituationVulnerability();
         System.out.println("Total number of people in vulnerability: " + personService.totalSituationVulnerability());
-        System.out.println("Total of people pensioners: " + personService.numberPensioners(personRepository.findAllPersons()));
-        System.out.println("Total of people none pensioners: " + personService.numberNonePensioners(personRepository.findAllPersons()));
+        System.out.println("Total of people pensioners: " + personService.numberPensioners());
+        System.out.println("Total of people none pensioners: " + personService.numberNonePensioners());
         System.out.println("The number of retired people over 60 years of age is: " + personService.numberPensionersOveSixty());
         System.out.println("Number of women pensioners : " + personService.numberWomenPensioners());
         System.out.println("Number of women Non pensioners : " + personService.numberWomenNonPensioners());

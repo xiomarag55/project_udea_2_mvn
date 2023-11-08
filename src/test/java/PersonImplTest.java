@@ -19,19 +19,16 @@ public class PersonImplTest {
     @Test
     void calculate_number_pensioners(){
         int average = this.personService.numberPensioners();
-        assertNotNull(average);
         assertEquals(9, average);
     }
     @Test
     void calculate_percent_number_pensioners(){
         double average = this.personService.percentPensioners();
-        assertNotNull(average);
         assertEquals(36.0, average);
     }
     @Test
     void calculate_percent_number_non_pensioners(){
         double average = this.personService.percentNonPensioners();
-        assertNotNull(average);
         assertEquals(64.0, average);
     }
 }
