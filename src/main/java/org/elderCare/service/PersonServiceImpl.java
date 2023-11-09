@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class PersonServiceImpl implements PersonService {
 
@@ -15,37 +16,27 @@ public class PersonServiceImpl implements PersonService {
     private final PersonRepository personRepository ;
     public PersonServiceImpl(PersonRepository personRepository){
         this.personRepository = personRepository;
-
     }
+    private static final char PENSION_YES = 'S';
+    private static final char PENSION_NO = 'N';
+    private static final char GENDER_FEMALE = 'F';
+
     //Number of people who are in stratum 1 by id Number
     @Override
     public void peopleSituationVulnerability() {
         LOGGER.info("You are printing people in situation of vulnerability");
-        Map<String, Integer> vulnerablePerson = new HashMap<>();
-        int totalSituationVulnerability = 0;
-        for (Person person : personRepository.findAllPersons()) {
-            if (person.isPension() == 'N' && person.stratum() < 2) {
-                vulnerablePerson.put(person.identityDocument(), person.stratum());
-                totalSituationVulnerability++;
-            }
-        }
-        for (Map.Entry<String, Integer> person : vulnerablePerson.entrySet()) {
-            System.out.println("Document: " + person.getKey() + " Stratum: " + person.getValue());
-        }
+        personRepository.findAllPersons().stream()
+                .filter(person -> person.isPension() == PENSION_NO && person.stratum() < 2)
+                .collect(Collectors.toMap(Person::identityDocument, Person::stratum))
+                .forEach((document, stratum) -> System.out.println("Document: " + document + " Stratum: " + stratum));
     }
 
     @Override
     public int totalSituationVulnerability() {
         LOGGER.info("You are calculating the total people in vulnerability situation");
-        Map<String, Integer> vulnerablePersons = new HashMap<>();
-        int sumSituationVulnerability = 0;
-        for(Person person: personRepository.findAllPersons()){
-            if(person.isPension() == 'N' && person.stratum() < 2){
-                vulnerablePersons.put(person.identityDocument(), person.stratum());
-                sumSituationVulnerability++;
-            }
-        }
-        return sumSituationVulnerability;
+        return (int) personRepository.findAllPersons().stream()
+                .filter(person -> person.isPension() == PENSION_NO && person.stratum() < 2)
+                .count();
     }
 
     @Override
@@ -68,60 +59,40 @@ public class PersonServiceImpl implements PersonService {
     @Override
     public int numberPensioners() {
         LOGGER.info("Method to calculate number of pensioners");
-        int sumPensioned = 0;
-        for(Person person: personRepository.findAllPersons()) {
-            if (person.isPension() == 'S') {
-                sumPensioned++;
-            }
-        }
-        return sumPensioned;
+        return (int) personRepository.findAllPersons().stream()
+                .filter(person -> person.isPension() == PENSION_YES)
+                .count();
     }
 
     @Override
     public int numberNonePensioners() {
         LOGGER.info("Method to calculate number of non-pernsioners");
-        int sumNonePensioned = 0;
-        for(Person person: personRepository.findAllPersons()) {
-            if (person.isPension() == 'N') {
-                sumNonePensioned++;
-            }
-        }
-        return sumNonePensioned;
+        return (int) personRepository.findAllPersons().stream()
+                .filter(person -> person.isPension() == PENSION_NO)
+                .count();
     }
 
     @Override
     public int numberPensionersOveSixty() {
         LOGGER.info("Method to calculate number of pensioners over sixty");
-        int sumPensionedOveSixty = 0;
-        for(Person person: personRepository.findAllPersons()){
-            if(person.isPension() == 'S' && person.age() > 60){
-                sumPensionedOveSixty++;
-            }
-        }
-        return sumPensionedOveSixty;
+        return (int) personRepository.findAllPersons().stream()
+                .filter(person -> person.isPension() == PENSION_YES && person.age() > 60)
+                .count();
     }
 
     @Override
     public int numberWomenPensioners() {
         LOGGER.info("Method to calculate number of pensioner women");
-        int sumWomenPensioned = 0;
-        for(Person person: personRepository.findAllPersons()){
-            if(person.isPension() == 'S' && person.sex() == 'F'){
-                sumWomenPensioned++;
-            }
-        }
-        return sumWomenPensioned;
+        return (int) personRepository.findAllPersons().stream()
+                .filter(person -> person.isPension() == PENSION_YES && person.sex() == GENDER_FEMALE)
+                .count();
     }
 
     @Override
     public int numberWomenNonPensioners() {
         LOGGER.info("Method to calculate women no-pensioners");
-        int sumWomenNonPensioned = 0;
-        for(Person person: personRepository.findAllPersons()){
-            if(person.isPension() == 'N' && person.sex() == 'F'){
-                sumWomenNonPensioned++;
-            }
-        }
-        return sumWomenNonPensioned;
+        return (int) personRepository.findAllPersons().stream()
+                .filter(person -> person.isPension() == PENSION_NO && person.sex() == GENDER_FEMALE)
+                .count();
     }
 }
