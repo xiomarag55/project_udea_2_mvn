@@ -4,15 +4,19 @@ import org.elderCare.model.Person;
 import org.elderCare.repository.PersonRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+@Service
 public class PersonServiceImpl implements PersonService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(PersonServiceImpl.class);
+    @Autowired
     private final PersonRepository personRepository ;
     public PersonServiceImpl(PersonRepository personRepository){
         this.personRepository = personRepository;

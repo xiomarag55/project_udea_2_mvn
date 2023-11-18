@@ -1,6 +1,7 @@
 package org.elderCare.repository;
 
 import org.elderCare.model.Person;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 

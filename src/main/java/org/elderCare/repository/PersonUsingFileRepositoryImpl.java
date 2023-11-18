@@ -3,6 +3,7 @@ package org.elderCare.repository;
 import org.elderCare.model.Person;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Repository;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -14,6 +15,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+@Repository
 public class PersonUsingFileRepositoryImpl implements PersonRepository {
     private static final Logger logger = LoggerFactory.getLogger(PersonUsingFileRepositoryImpl.class);
     private final List<Person> persons;
