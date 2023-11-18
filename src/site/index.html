@@ -2,9 +2,51 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Tabla de personas</title>
 </head>
 <body>
+<h1>Consulta a API</h1>
+<button onclick="hacerPeticion()">Lista de personas</button>
 
+<table id="tablaDatos">
+    <thead>
+    <tr>
+        <th>Nombre</th>
+        <th>Edad</th>
+        <th>Documento de identidad</th>
+        <th>Estado civil</th>
+        <th>Estrato</th>
+        <th>Pensionado</th>
+        <th>Sexo</th>
+    </tr>
+    </thead>
+    <tbody id="resultado"></tbody>
+</table>
+<script>
+    function hacerPeticion() {
+        fetch('http://localhost:8080/eldercare/persons/test')
+            .then(response => response.json())
+            .then(data => {
+                const tablaDatos = document.getElementById('tablaDatos');
+                const resultado = document.getElementById('resultado');
+                resultado.innerHTML = '';
+
+                data.forEach(person => {
+                    const fila = document.createElement('tr');
+                    fila.innerHTML = `
+                        <td>${person.name}</td>
+                        <td>${person.age}</td>
+                        <td>${person.identityDocument}</td>
+                        <td>${person.maritalStatus}</td>
+                        <td>${person.stratum}</td>
+                        <td>${person.isPension}</td>
+                        <td>${person.sex}</td>
+                    `;
+                    resultado.appendChild(fila);
+                });
+            })
+            .catch(error => console.error('Error:', error));
+    }
+</script>
 </body>
 </html>
