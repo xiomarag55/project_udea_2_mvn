@@ -52,8 +52,8 @@ public class PersonServiceImpl implements PersonService {
     }
 
     @Override
-    public void allPersonsToRevision() {
-        personRepository.findAllPersons().forEach(System.out::println);
+    public List<Person> allPersonsToRevision() {
+        return personRepository.findAllPersons();
     }
 
     @Override

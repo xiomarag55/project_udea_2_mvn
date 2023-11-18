@@ -3,8 +3,13 @@ package org.elderCare;
 import org.elderCare.repository.PersonUsingFileRepositoryImpl;
 import org.elderCare.service.PersonService;
 import org.elderCare.service.PersonServiceImpl;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
 public class Main {
     public static void main(String[] args) {
+        SpringApplication.run(Main.class, args);
 
         PersonService personService = new PersonServiceImpl(new PersonUsingFileRepositoryImpl());
 
