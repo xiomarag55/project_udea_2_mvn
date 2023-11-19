@@ -18,8 +18,40 @@ public class PersonController {
     @Autowired
     private  PersonService personService;
 
-    @GetMapping("/test")
+    @GetMapping("/mainInfo")
     public List<Person> createHeader() throws ParseException {
         return personService.allPersonsToRevision();
+    }
+    @GetMapping("/vulnerability")
+    public Integer totalSituationVulnerability() throws ParseException {
+        return personService.totalSituationVulnerability();
+    }
+    @GetMapping("/personPensioners")
+    public Integer numberPensioners() throws ParseException {
+        return personService.numberPensioners();
+    }
+    @GetMapping("/nonePensioners")
+    public Integer numberNonePensioners() throws ParseException {
+        return personService.numberNonePensioners();
+    }
+    @GetMapping("/pensionersOverSixty")
+    public Integer numberPensionersOveSixty() throws ParseException {
+        return personService.numberPensionersOveSixty();
+    }
+    @GetMapping("/womenPensioners")
+    public Integer numberWomenPensioners() throws ParseException {
+        return personService.numberWomenPensioners();
+    }
+    @GetMapping("/womenNonePensioners")
+    public Integer numberWomenNonPensioners() throws ParseException {
+        return personService.numberWomenNonPensioners();
+    }
+    @GetMapping("/percentPensioners")
+    public Double percentPensioners() throws ParseException {
+        return personService.percentPensioners();
+    }
+    @GetMapping("/percentNonePensioners")
+    public Double percentNonPensioners() throws ParseException {
+        return personService.percentNonPensioners();
     }
 }

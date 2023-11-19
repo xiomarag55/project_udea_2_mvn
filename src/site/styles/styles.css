@@ -1,0 +1,41 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: antiquewhite;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    padding: 10px;
+    margin-left: 1px;
+}
+.logo{
+    border-radius: 50px;
+    width: 100px;
+    height: 100px;
+}
+
+.center-text {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.grid-container {
+    width: max-content;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.table-main {
+    background-color: #f0f0f0;
+    margin-left: 0;
+    padding:0;
+    width: 1000px;
+
+}
+
+.second-info {
+    background-color: #e0e0e0;
+    padding: 20px;
+}
