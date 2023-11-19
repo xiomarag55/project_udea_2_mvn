@@ -19,9 +19,7 @@
         <h1>Población de adultos mayores en Venecia</h1>
     </div>
 
-    <button onclick="obtainPersons();totalPersonsInSituationVulnerability()" type="button"
-            class="btn btn-outline-primary">Lista de personas
-    </button>
+    <button id="listarBtn" onclick="obtainPersons();totalPersonsInSituationVulnerability();numberPensioners();numberNonePensioners();numberPensionersOveSixty();numberWomenPensioners();numberWomenNonPensioners();percentPensioners();percentNonPensioners()" type="button" class="btn btn-outline-primary">Lista de personas</button>
 
     <div class="grid-container">
         <div class="table-main">
@@ -43,13 +41,22 @@
         <div class="second-info">
             <h2>Hallazgos encontrados</h2>
 
-            <h5>Numero de personas en situación de vulnerabilidad</h5>
+            <h5>Numero de personas en situación de vulnerabilidad:</h5>
             <p id="vulerabilityPerson"></p>
-            <h5>Número de personas pensionadas</h5>
-            <h5>Número de personas no pensionadas</h5>
-            <h5>Numero de personas en situación de vulnerabilidad</h5>
-            <h5>Número de personas pensionadas</h5>
-            <h5>Número de personas no pensionadas</h5>
+            <h5>Número de personas pensionadas:</h5>
+            <p id="pensioners"></p>
+            <h5>Número de personas no pensionadas:</h5>
+            <p id="nonPensioners"></p>
+            <h5>Numero de personas pensionadas sobre los 60 años:</h5>
+            <p id="overSixty"></p>
+            <h5>Número de mujeres pensionadas:</h5>
+            <p id="womenPensioners"></p>
+            <h5>Número de mujeres no pensionadas:</h5>
+            <p id="womenNonPensioners"></p>
+            <h5>Porcentaje de pensionados:</h5>
+            <p id="percentPensioners"></p>
+            <h5>Porcentaje de no pensionados:</h5>
+            <p id="percentNonPensioners"></p>
         </div>
     </div>
 </div>
