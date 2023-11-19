@@ -34,7 +34,7 @@ function totalPersonsInSituationVulnerability() {
     })
         .then(response => response.json())
         .then(data => {
-            const valorElement = document.getElementById('vulerabilityPerson');
+            const valorElement = document.getElementById('vulnerabilityPerson');
             valorElement.textContent = data;
         })
         .catch(error => console.error('Error:', error));

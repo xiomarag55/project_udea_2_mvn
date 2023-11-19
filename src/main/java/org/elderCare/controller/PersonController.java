@@ -13,7 +13,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("eldercare/persons/")
-@CrossOrigin(origins = "file:///C:/Users/Xiomara/Desktop/index.html")
+@CrossOrigin(origins = "*")
 public class PersonController {
     @Autowired
     private  PersonService personService;
